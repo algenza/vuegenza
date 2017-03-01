@@ -2,15 +2,15 @@
   <div class="list">
     <h1>{{ msg }}</h1>
     <div>
-      <div><router-link :to="{name:'userAdd'}">Add</router-link></div>
-      <div v-for="user in userList" class="lcontainer">
-        <div class="fleft lname">
-          <router-link :to="{name:'userDetail', params:{id:user.id}}">{{user.name}}</router-link>              
+      <div><router-link :to="{name:'userList'}">List</router-link>&nbsp;<router-link :to="{name:'userEdit',params:{id:id}}">Edit</router-link></div>
+      <div class="lcontainer">
+        <div class="lname">
+          {{user.name}}<br/>
+          {{user.email}}<br/>
+          <ul>
+            <li v-for="phone in user.phone">{{phone}}</li>
+          </ul>
         </div>
-        <div class="fleft laction">
-          action herre        
-        </div>
-        <div class="freset"></div>
       </div>
     </div>
   </div>
@@ -22,22 +22,24 @@
 export default {
   name: 'Home',
   mounted () {
-    this.fetchUsersData()
+    this.fetchUserData()
   },
+  props : ['id'],
   data () {
     return {
-      msg: 'This is users component!'
+      msg: 'This is user detail component!',
+
     }
   },
   computed : {
-    userList () {
-      return this.$store.state.users.userList
+    user () {
+      return this.$store.state.users.userDetail;
     }
   },
   methods : {
-    fetchUsersData(){
-      this.$store.dispatch('fetchUserList')
-    },
+    fetchUserData(){
+      this.$store.dispatch('fetchUser',this.id)
+    }
   }
 }
 </script>
@@ -76,10 +78,5 @@ a {
   padding: 10px;
   margin-bottom: 10px;
 }
-.lname {
-  width :50%;
-}
-.laction {
-  width :50%;
-}
+
 </style>

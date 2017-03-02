@@ -41,7 +41,6 @@ const actions = {
 		})
 		.catch(function (error) {
 			console.log(error);
-			return {};
 		});
 	},
 	addUser (context, userData) {

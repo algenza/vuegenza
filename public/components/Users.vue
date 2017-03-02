@@ -8,7 +8,7 @@
           <router-link :to="{name:'userDetail', params:{id:user.id}}">{{user.name}}</router-link>              
         </div>
         <div class="fleft laction">
-          action herre        
+          <router-link :to="{name:'userEdit', params:{id:user.id}}">Edit</router-link>
         </div>
         <div class="freset"></div>
       </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -37,7 +36,7 @@ export default {
   methods : {
     fetchUsersData(){
       this.$store.dispatch('fetchUserList')
-    },
+    }
   }
 }
 </script>

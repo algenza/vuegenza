@@ -17,7 +17,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -27,13 +26,12 @@ export default {
   props : ['id'],
   data () {
     return {
-      msg: 'This is user detail component!',
-
+      msg: 'This is user detail component!'
     }
   },
   computed : {
     user () {
-      return this.$store.state.users.userDetail;
+      return this.$store.state.users.userDetail
     }
   },
   methods : {

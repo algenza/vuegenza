@@ -6,16 +6,18 @@
       <div class="lcontainer">
         <div class="lname">
           <div v-for="(value,key) in user">
-          {{key}}
-          <div v-if="!Array.isArray(value)">
-            <input type="text" v-model="user[key]">
-          </div>
-          <div v-else>
-            <button @click="value.push('')">+</button>
-            <div v-for="(pvalue,index) in value">
-              <input type="text" v-model="value[index]"><button @click="value.splice(index,1)">-</button>
-            </div>            
-          </div>
+          <div  v-if="key!='id'">
+              {{key}}
+              <div v-if="!Array.isArray(value)">
+                <input type="text" v-model="user[key]">
+              </div>
+              <div v-else>
+                <button @click="value.push('')">+</button>
+                <div v-for="(pvalue,index) in value">
+                  <input type="text" v-model="value[index]"><button @click="value.splice(index,1)">-</button>
+                </div>            
+              </div>
+            </div>
           </div>
         </div>
         <button @click="saveData">Save</button>
@@ -25,7 +27,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 
 export default {
   name: 'Home',

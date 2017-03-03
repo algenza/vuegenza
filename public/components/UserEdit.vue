@@ -51,7 +51,6 @@ export default {
   },
   watch: {
     savedID (val) {
-      console.log(val)
       if(val>0){
         this.$router.push({ name: 'userDetail', params: { id: val }})
       }

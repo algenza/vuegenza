@@ -3,7 +3,8 @@ import axios from 'axios'
 const state = {
 	userList : [],
 	userDetail : {},
-	savedID: -1
+	savedID: -1,
+	deleteStatus: 0,
 }
 
 const mutations = {
@@ -15,6 +16,9 @@ const mutations = {
 	},
 	setSavedID (state, data) {
 		state.savedID = data
+	},
+	setDelStatus (state, data) {
+		state.deleteStatus = data
 	}
 }
 
@@ -75,6 +79,27 @@ const actions = {
 		.then(function (response) {
 			if(response.data.hasOwnProperty('id')){
 				context.commit('setSavedID',response.data.id)				
+			}
+		})
+		.catch(function (error) {
+			if (error.response) {
+				console.log(error.response.data);
+				console.log(error.response.status);
+				console.log(error.response.headers);
+			} else {
+				console.log('Error', error.message);
+			}
+			console.log(error.config);
+		});		
+	},
+	deleteUser (context, id) {
+		axios.delete("http://localhost:1000/users/"+id,
+		{
+			headers: {'Content-Type': 'application/json'}
+		})
+		.then(function (response) {
+			if(response.status==204){
+				context.commit('setDelStatus',1)				
 			}
 		})
 		.catch(function (error) {

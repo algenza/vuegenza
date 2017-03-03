@@ -8,7 +8,8 @@
           <router-link :to="{name:'userDetail', params:{id:user.id}}">{{user.name}}</router-link>              
         </div>
         <div class="fleft laction">
-          <router-link :to="{name:'userEdit', params:{id:user.id}}">Edit</router-link>
+          <button @click="$router.push({name:'userEdit', params:{id:user.id}})">Edit</button> 
+          <button @click="deleteUser(user.id)">Delete</button>          
         </div>
         <div class="freset"></div>
       </div>
@@ -17,9 +18,11 @@
 </template>
 
 <script>
+import UserDeleteMixin from './mixins/UserDeleteMixin'
 
 export default {
   name: 'Home',
+  mixins:[UserDeleteMixin],
   mounted () {
     this.fetchUsersData()
   },
@@ -35,6 +38,7 @@ export default {
   },
   methods : {
     fetchUsersData(){
+      this.$store.commit('setDelStatus',0)
       this.$store.dispatch('fetchUserList')
     }
   }

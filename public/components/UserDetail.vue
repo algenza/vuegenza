@@ -11,15 +11,18 @@
             <li v-for="phone in user.phone">{{phone}}</li>
           </ul>
         </div>
+        <button @click="deleteUser(user.id)">Delete</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserDeleteMixin from './mixins/UserDeleteMixin'
 
 export default {
   name: 'Home',
+  mixins:[UserDeleteMixin],
   mounted () {
     this.fetchUserData()
   },

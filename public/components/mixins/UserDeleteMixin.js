@@ -6,14 +6,14 @@ export default {
 	},
 	watch: {
 		deleteStatus (val) {
-	      console.log(val)
+			console.log(val)
 			if(val>0){
 				console.log(this.$route.name)
 				if(this.$route.name == 'userList'){
-	      console.log('masuk1')
+					console.log('masuk1')
 					this.fetchUsersData()
 				}else{
-	      console.log('masuk2')
+					console.log('masuk2')
 					this.$router.push({ name: 'userList'})
 				}
 			}

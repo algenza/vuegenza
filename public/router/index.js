@@ -8,11 +8,12 @@ import Users from '../components/Users'
 import UserDetail from '../components/UserDetail'
 import UserAdd from '../components/UserAdd'
 import UserEdit from '../components/UserEdit'
+import Oauth from '../components/Oauth'
 
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+	// mode: 'history',
 	routes: [
 	{
 		path: '/',
@@ -45,6 +46,11 @@ export default new Router({
 		path: '/companies',
 		name: 'companyList',
 		component: Companies
+	},
+	{
+		path: '/oauth',
+		name: 'oauth',
+		component: Oauth		
 	}
 	]
 })
